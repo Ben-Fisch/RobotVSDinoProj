@@ -12,3 +12,4 @@ class Herd:
         self.dinosaurs.append[dinosaur_one]
         self.dinosaurs.append(dinosaur_two)
         self.dinosaurs.append(dinosaur_three)
+    # should be pushed to the list of dinos above

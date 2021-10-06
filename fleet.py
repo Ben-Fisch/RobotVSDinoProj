@@ -12,3 +12,4 @@ class Fleet:
         self.robots.append(robot_one)
         self.robots.append(robot_two)
         self.robots.append(robot_three)
+    # should be pushed into the list of robots above
