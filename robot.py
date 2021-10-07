@@ -9,5 +9,5 @@ class Robot:
 
     def attack(self, dinosaur):
         dinosaur.health = dinosaur.health - self.weapon.attack_power
-        pass
+
         # for each robot attack, decrease dinosaur helth by Weapons attack_power (-10)
