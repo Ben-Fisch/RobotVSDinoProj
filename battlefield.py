@@ -8,11 +8,18 @@ class Battlefield:
         self.herd = Herd()
 
     def run_game(self):
-
-        pass
+        print('Welcome to Robots vs Dinosaurs! In this game you will choose your team and battle until you finish the enemy. ')
 
     def display_welcome(self):
-        pass
+        team_choice = input(
+            "Time to pick your team. Type 'robo' for Robots or 'dino' for Dinosaurs. ")
+        if team_choice == 'robo':
+            print('You have chosen the fleet of Robots as your team!')
+        elif team_choice == 'dino':
+            print('You have chosen the herd of Dinosaurs as your team!')
+        else:
+            input(
+                "Time to pick your team. Type 'robo' for Robots or 'dino' for Dinosaurs. ")
 
     def battle(self):
         pass
