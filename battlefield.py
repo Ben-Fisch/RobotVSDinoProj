@@ -11,6 +11,7 @@ class Battlefield:
 
     def run_game(self):
         print('Welcome to Robots vs Dinosaurs! In this game you will choose your team and battle until you finish the enemy. ')
+        self.display_welcome()
         # welcome message
         # display rules
 
@@ -27,60 +28,73 @@ class Battlefield:
         elif team_choice == 'dino':
             print('You have chosen the herd of Dinosaurs as your team!')
         else:
-            input(
-                "Time to pick your team. Type 'robo' for Robots or 'dino' for Dinosaurs. ")
+            self.display_welcome()
+
+        self.dino_turn()
 
     def battle(self):
-        while ():
-            if len(self.herd.dinosaurs) > 0 and len(self.fleet.robots) > 0:
-                self.dino_turn()
-                self.robo_turn()
-            else:
-                break
-                # continue looping through fighting turns
+        while len(self.herd.dinosaurs) > 0 and len(self.fleet.robots) > 0:
+            self.dino_turn()
+            self.robo_turn()
 
-                # end the loop
+            # continue looping through fighting turns
+
+            # end the loop
 
         # while loop what is below until dino or robo are all at health=0
         # robot_one vs dinosaur_one
         # robot_two vs dinosaur_two
         # robot_three vs dinosaur_three
 
-    def dino_turn(self, dinosaur):
+    def dino_turn(self):
         dino_attack_one = self.herd.dinosaurs[0]
         dino_attack_one.attack(self.fleet.robots[0])
-        if self.fleet.robots[0] == 0:
-            self.fleet.robots.remove([0])
+        if self.fleet.robots[0].health == 0:
+            self.fleet.robots.pop(0)
 
-        dino_attack_two = self.herd.dinosaurs[1]
-        dino_attack_two.attack(self.fleet.robots[1])
-        if self.fleet.robots[1] == 0:
-            self.fleet.robots.remove([1])
+        if self.herd.dinosaurs[1] and self.fleet.robots[1]:
+            dino_attack_two = self.herd.dinosaurs[1]
+            dino_attack_two.attack(self.fleet.robots[1])
+            if self.fleet.robots[1].health == 0:
+                self.fleet.robots.pop(1)
 
-        dino_attack_three = self.herd.dinosaurs[2]
-        dino_attack_three.attack(self.fleet.robots[2])
-        if self.fleet.robots[2] == 0:
-            self.fleet.robots.remove([2])
+        if self.herd.dinosaurs[2] and self.fleet.robots[2]:
+            dino_attack_three = self.herd.dinosaurs[2]
+            dino_attack_three.attack(self.fleet.robots[2])
+            if self.fleet.robots[2].health == 0:
+                self.fleet.robots.pop(2)
 
+        if len(self.fleet.robots) == 0:
+            print('Game is over')
+        else:
+            self.robo_turn()
+         # game over
         # # robot_defense_one = Fleet[0]
         # dino_attack_one.dinosaurs.attack
         # dino(one,two and three) attacks robo(one,two and three) and robo(s) lose health depending on dino attack power (call the attack method in dino file)
 
-    def robo_turn(self, robot):
+    def robo_turn(self):
         robo_attack_one = self.fleet.robots[0]
         robo_attack_one.attack(self.herd.dinosaurs[0])
-        if self.herd.dinosaurs[0] == 0:
-            self.herd.dinosaurs.remove([0])
+        if self.herd.dinosaurs[0].health == 0:
+            self.herd.dinosaurs.pop(0)
 
-        robo_attack_two = self.fleet.robots[1]
-        robo_attack_two.attack(self.herd.dinosaurs[1])
-        if self.herd.dinosaurs[1] == 0:
-            self.herd.dinosaurs.remove([1])
+        if self.fleet.robots[1] and self.herd.dinosaurs[1]:
+            robo_attack_two = self.fleet.robots[1]
+            robo_attack_two.attack(self.herd.dinosaurs[1])
+            if self.herd.dinosaurs[1].health == 0:
+                self.herd.dinosaurs.pop(1)
 
-        robo_attack_three = self.fleet.robots[2]
-        robo_attack_three.attack(self.herd.dinosaurs[2])
-        if self.herd.dinosaurs[2] == 0:
-            self.herd.dinosaurs.remove([2])
+        if self.fleet.robots[2] and self.herd.dinosaurs[2]:
+            robo_attack_three = self.fleet.robots[2]
+            robo_attack_three.attack(self.herd.dinosaurs[2])
+            if self.herd.dinosaurs[2].health == 0:
+                self.herd.dinosaurs.pop(2)
+
+        if len(self.fleet.robots) == 0:
+            print('Game is over')
+        else:
+            self.battle()
         # robo(one,two and three) attacks dino(one,two and three) and dino(s) lose health depending on robo weapon attack power (call the attack method in robo file) End the round.
 
     def show_dino_opponent_options(self):
